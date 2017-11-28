@@ -13,8 +13,8 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-    
-    Copyright 2007-2013 Yohann Martineau 
+
+    Copyright 2007-2013 Yohann Martineau
 */
 
 package net.sourceforge.peers;
@@ -63,7 +63,6 @@ public class FileLogger implements Logger {
         networkFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS");
     }
 
-    @Override
     public final void debug(String message) {
         synchronized (logMutex) {
             logWriter.write(genericLog(message.toString(), "DEBUG"));
@@ -71,7 +70,6 @@ public class FileLogger implements Logger {
         }
     }
 
-    @Override
     public final void info(String message) {
         synchronized (logMutex) {
             logWriter.write(genericLog(message.toString(), "INFO "));
@@ -79,7 +77,6 @@ public class FileLogger implements Logger {
         }
     }
 
-    @Override
     public final void error(String message) {
         synchronized (logMutex) {
             logWriter.write(genericLog(message.toString(), "ERROR"));
@@ -87,7 +84,6 @@ public class FileLogger implements Logger {
         }
     }
 
-    @Override
     public final void error(String message, Exception exception) {
         synchronized (logMutex) {
             logWriter.write(genericLog(message, "ERROR"));
@@ -95,7 +91,7 @@ public class FileLogger implements Logger {
             logWriter.flush();
         }
     }
-    
+
     private final String genericLog(String message, String level) {
         StringBuffer buf = new StringBuffer();
         buf.append(logFormatter.format(new Date()));
@@ -109,7 +105,6 @@ public class FileLogger implements Logger {
         return buf.toString();
     }
 
-    @Override
     public final void traceNetwork(String message, String direction) {
         synchronized (networkMutex) {
             StringBuffer buf = new StringBuffer();
@@ -125,5 +120,4 @@ public class FileLogger implements Logger {
             networkWriter.flush();
         }
     }
-
 }
